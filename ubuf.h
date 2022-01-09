@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct ubuf {
     size_t size;
@@ -28,6 +29,7 @@ extern int ub_read_float(struct ubuf *ubuf, float *dest);
 extern int ub_read_double(struct ubuf *ubuf, double *dest);
 extern int ub_read_float_BE(struct ubuf *ubuf, float *dest);
 extern int ub_read_double_BE(struct ubuf *ubuf, double *dest);
+extern int ub_read_buffer(struct ubuf *ubuf, void *dest, size_t count);
 
 // write functions
 extern int ub_write_u8(struct ubuf *ubuf, uint8_t value);
@@ -41,5 +43,6 @@ extern int ub_write_float(struct ubuf *ubuf, float value);
 extern int ub_write_double(struct ubuf *ubuf, double value);
 extern int ub_write_float_BE(struct ubuf *ubuf, float value);
 extern int ub_write_double_BE(struct ubuf *ubuf, double vaue);
+extern int ub_write_buffer(struct ubuf *ubuf, void *buffer, size_t count);
 
 #endif

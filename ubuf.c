@@ -142,6 +142,13 @@ int ub_read_double_BE(struct ubuf *ubuf, double *dest) {
     return 0;
 }
 
+int ub_read_buffer(struct ubuf *ubuf, void *dest, size_t count) {
+    CHECK_SIZE(ubuf, count);
+    memcpy(dest, ubuf->buffer + ubuf->index, count);
+    ubuf->index += count;
+    return 0;
+}
+
 int ub_write_u8(struct ubuf *ubuf, uint8_t value) {
     MAYBE_EXPAND(ubuf, 1);
     ubuf->buffer[ubuf->index++] = value;
@@ -226,4 +233,11 @@ int ub_write_float_BE(struct ubuf *ubuf, float value) {
 
 int ub_write_double_BE(struct ubuf *ubuf, double value) {
     return ub_write_u64_BE(ubuf, *(uint64_t *)&value);
+}
+
+int ub_write_buffer(struct ubuf *ubuf, void *buffer, size_t count) {
+    MAYBE_EXPAND(ubuf, count);
+    memcpy(ubuf->buffer + ubuf->index, buffer, count);
+    ubuf->index += count;
+    return 0;
 }

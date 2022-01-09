@@ -1,6 +1,7 @@
 #include "ubuf.h"
 
-#define MAYBE_EXPAND(ubuf, bytes_to_write)               \
+#define MAYBE_EXPAND(ubuf, bytes_to_write)              \
+    assert(ubuf != NULL);                                \
     if(ubuf->index + bytes_to_write > ubuf->size) {       \
         size_t target_size = ubuf->size;                   \
         do {                                                \
@@ -14,7 +15,8 @@
         ubuf->size = target_size;                                   \
     }
 
-#define CHECK_SIZE(ubuf, bytes_to_read)           \
+#define CHECK_SIZE(ubuf, bytes_to_read)          \
+    assert(ubuf != NULL);                         \
     if(ubuf->index + bytes_to_read > ubuf->size) { \
         return -1;                                  \
     }

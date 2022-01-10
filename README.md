@@ -1,6 +1,6 @@
 # ubuf
 
-ubuf is a simple interface for reading/writing binary buffers.
+ubuf is a simple interface for reading/writing binary data. It handles automatically expanding the buffer and byte order for you, but that's about it.
 
 ## Example
 

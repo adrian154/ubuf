@@ -1,7 +1,7 @@
 #include "ubuf.h"
 
 #define MAYBE_EXPAND(ubuf, bytes_to_write)              \
-    assert(ubuf != NULL);                                \
+    if(ubuf == NULL) { return -1; }                      \
     if(ubuf->index + bytes_to_write > ubuf->size) {       \
         size_t target_size = ubuf->size;                   \
         do {                                                \
@@ -16,14 +16,17 @@
     }
 
 #define CHECK_SIZE(ubuf, bytes_to_read)          \
-    assert(ubuf != NULL);                         \
+    if(ubuf == NULL) { return -1; }               \
     if(ubuf->index + bytes_to_read > ubuf->size) { \
         return -1;                                  \
     }
 
 int ub_init(struct ubuf *ubuf, size_t initial_size) {
+
+    if(ubuf == NULL) {
+        return -1;
+    }
     
-    assert(ubuf != NULL);
     if((ubuf->buffer = malloc(initial_size)) == NULL) {
         return -1;
     }

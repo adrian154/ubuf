@@ -47,8 +47,4 @@ extern int ub_write_float_BE(struct ubuf *ubuf, float value);
 extern int ub_write_double_BE(struct ubuf *ubuf, double vaue);
 extern int ub_write_buffer(struct ubuf *ubuf, void *buffer, size_t count);
 
-// file descriptor functions return the number of bytes written, or -1 if an error occurred
-extern ssize_t ub_read_fd(struct ubuf *ubuf, int fd, size_t count);
-extern ssize_t ub_write_fd(struct ubuf *ubuf, int fd, size_t count);
-
 #endif

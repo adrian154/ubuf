@@ -13,6 +13,7 @@ ub_init(&buf, 1024);
 ub_write_u32(&buf, 0xdeadbeef);
 
 // read it back
+buf.index = 0;
 uint32_t value;
 ub_read_u32(&buf, &value);
 

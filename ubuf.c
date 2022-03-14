@@ -38,6 +38,7 @@ int ub_init(struct ubuf *ubuf, size_t initial_size) {
 }
 
 void ub_free(struct ubuf *ubuf) {
+    if(ubuf == NULL) return;
     free(ubuf->buffer);
 }
 
